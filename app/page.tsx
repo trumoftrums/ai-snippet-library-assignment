@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SnippetType } from "@/types";
+import SnippetListClient from "@/components/SnippetList";
 
 
 export default async function SnippetListPage() {
@@ -19,41 +20,8 @@ export default async function SnippetListPage() {
           + New Snippet
         </Link>
       </div>
-      {snippets.length === 0 ? (
-        <p className="text-gray-600">No snippets yet. Create one!</p>
-      ) : (
-        <div className="overflow-x-auto shadow">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-400">
-              <tr>
-                <th className="px-6 py-3 text-left text-gray-700 font-semibold">Title</th>
-                <th className="px-6 py-3 text-left text-gray-700 font-semibold">Body</th>
-                <th className="px-6 py-3 text-left text-gray-700 font-semibold">Created At</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {snippets.map((snippet, index) => (
-                <tr
-                  key={snippet._id}
-                  className={`hover:bg-gray-50 ${index % 2 === 0 ? "bg-gray-50" : ""} cursor-pointer transition`}
-                >
-                  <td className="px-6 py-4 text-gray-800">
-                    <Link href={`/snippets/${snippet._id}`} className="hover:underline text-blue-600">
-                      {snippet.title}
-                    </Link>
-                  </td>
-                  <td className="px-6 py-4 text-gray-600">
-                    {snippet.body.length > 100 ? snippet.body.slice(0, 100) + "..." : snippet.body}
-                  </td>
-                  <td className="px-6 py-4 text-gray-400 text-sm">
-                    {new Date(snippet.createdAt).toLocaleString()}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+
+      <SnippetListClient initialSnippets={snippets} />
     </div>
   );
 }
