@@ -22,3 +22,8 @@ npm install
 ```bash
 npm run dev
 ```
+
+## Additional Features(If I has more time)
+- Streaming AI responses
+- Global loading overlay when calling api
+- Implement the ai-transform endpoint as a Cloudflare Worker
